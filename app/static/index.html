@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GitHub 仓库体检</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.6/dist/chart.umd.min.js"></script>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <div class="bg-grid"></div>
+  <header class="header">
+    <div class="logo">
+      <span class="logo-icon">◆</span>
+      <h1>GitHub 仓库体检</h1>
+    </div>
+    <p class="subtitle">输入公开仓库 URL，一键获取 Stars、Fork、语言分布与 AI 健康评分</p>
+  </header>
+
+  <main class="container">
+    <form id="analyze-form" class="search-card">
+      <label for="repo-url">仓库地址</label>
+      <div class="search-row">
+        <input
+          id="repo-url"
+          type="url"
+          placeholder="https://github.com/fastapi/fastapi"
+          required
+          autocomplete="off"
+        />
+        <button type="submit" id="submit-btn">开始体检</button>
+      </div>
+      <p class="hint">示例：torvalds/linux、microsoft/vscode</p>
+    </form>
+
+    <div id="loading" class="loading hidden">
+      <div class="spinner"></div>
+      <p>正在拉取 GitHub 数据并分析…</p>
+    </div>
+
+    <div id="error" class="error-banner hidden"></div>
+
+    <section id="results" class="results hidden">
+      <article class="repo-header card">
+        <div>
+          <h2 id="repo-name"></h2>
+          <p id="repo-desc" class="muted"></p>
+          <div id="repo-topics" class="topics"></div>
+        </div>
+        <a id="repo-link" class="btn-outline" target="_blank" rel="noopener">在 GitHub 打开</a>
+      </article>
+
+      <div class="stats-grid">
+        <div class="stat card accent-gold">
+          <span class="stat-label">Stars</span>
+          <span class="stat-value" id="stat-stars">—</span>
+        </div>
+        <div class="stat card accent-cyan">
+          <span class="stat-label">Forks</span>
+          <span class="stat-value" id="stat-forks">—</span>
+        </div>
+        <div class="stat card accent-purple">
+          <span class="stat-label">Watchers</span>
+          <span class="stat-value" id="stat-watchers">—</span>
+        </div>
+        <div class="stat card accent-pink">
+          <span class="stat-label">Open Issues</span>
+          <span class="stat-value" id="stat-issues">—</span>
+        </div>
+      </div>
+
+      <div class="charts-row">
+        <div class="card chart-card">
+          <h3>编程语言分布</h3>
+          <canvas id="lang-chart"></canvas>
+        </div>
+        <div class="card chart-card">
+          <h3>AI 项目评分对比</h3>
+          <canvas id="bar-chart"></canvas>
+          <p id="bar-chart-empty" class="chart-empty muted hidden">暂无评分数据</p>
+        </div>
+      </div>
+
+      <div class="meta-grid card">
+        <h3>仓库元信息</h3>
+        <dl id="meta-list" class="meta-list"></dl>
+      </div>
+
+      <article id="ai-section" class="card ai-card hidden">
+        <div class="ai-header">
+          <h3>AI 项目评分</h3>
+          <div class="score-ring" id="score-ring">
+            <span id="overall-score">—</span>
+          </div>
+        </div>
+        <p id="ai-summary" class="ai-summary"></p>
+        <p id="ai-message" class="ai-message muted hidden"></p>
+        <div class="ai-columns">
+          <div>
+            <h4>优势</h4>
+            <ul id="ai-strengths"></ul>
+          </div>
+          <div>
+            <h4>改进建议</h4>
+            <ul id="ai-improvements"></ul>
+          </div>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <footer class="footer">
+  <p>FastAPI · GitHub API · OpenAI 兼容 API · Chart.js</p>
+  </footer>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
