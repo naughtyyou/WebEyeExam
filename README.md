@@ -106,7 +106,7 @@ python run.py
 
 > `run.py` 会自动切换到项目 `.venv`（当系统 `python` 为 3.7 等未装依赖时）。若 8000 端口被占用会自动尝试下一端口，终端会打印实际访问地址。
 
-浏览器打开终端提示的地址（默认 **http://127.0.0.1:8000**）
+浏览器打开终端提示的地址（默认 **http://127.0.0.1:8000** ）
 
 示例仓库：`https://github.com/fastapi/fastapi`
 
@@ -136,13 +136,9 @@ exam_new/
 └── README.md
 ```
 
-## 提交说明
-
-可将本目录 `exam_new` 整体打包或推送到 GitHub 仓库提交作业。核心代码均在 `exam_new` 内，无外部依赖源码。
-
 ## Vibe Coding 提示词
 
-详见 [VIBE_CODING.md](./VIBE_CODING.md)（作业加分项：开发过程提示词记录）。
+详见 [VIBE_CODING.md](./VIBE_CODING.md)。
 
 ## 许可证
 
