@@ -39,9 +39,3 @@
 测试仓库：https://github.com/fastapi/fastapi
 确认：指标卡片、语言饼图、柱状图、元信息、AI/规则评分区块均正常。
 ```
-
-## 可选扩展（未实现，可自行加）
-
-- 缓存 GitHub 响应（Redis）
-- 对比两个仓库
-- README 质量检测（需额外 API 或爬取）
